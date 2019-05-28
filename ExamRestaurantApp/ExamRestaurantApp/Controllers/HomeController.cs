@@ -133,7 +133,7 @@ namespace ExamRestaurantApp.Controllers
         {
             var order = new Order {FoodId=id,UserId=(int)TempData.Peek("CurrentUser") };
             Bin.Add(order);
-            return RedirectToAction("MakeOrder", "Home");
+            return RedirectToAction("SeeBin", "Home");
         }
         public IActionResult SeeBin()
         {
