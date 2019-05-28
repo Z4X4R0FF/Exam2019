@@ -1,0 +1,20 @@
+﻿@model ExamApp.Models.UploadedFile
+@{
+    Layout = "_Layout";
+}
+<h2>Browse Files</h2>
+<p>Name</p>
+<p>@Model.Name</p><br />
+<p>Description</p>
+<p>@Model.Description</p><br />
+<p>Text</p>
+<p>@Model.Text</p><br />
+<p>Total downloads</p>
+<p>@Model.AmountOfDownloads</p>
+<p><button type="button" onclick="location.href = '@Url.Action("Download", "Home", new {id=Model.Id}, null)'">Download</button></p>
+
+}
+else
+{
+<p>Nothing was found.</p>
+}

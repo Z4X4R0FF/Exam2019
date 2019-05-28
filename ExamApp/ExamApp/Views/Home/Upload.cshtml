@@ -1,0 +1,20 @@
+﻿@model ExamApp.Models.NonDbFile
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+
+    <h3>Выберите файл для загрузки</h3>
+    <form asp-action="UploadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
+        <input type="file" name="uploadedFile" /><br>
+        <p>Name </p>
+        <p>@Html.TextBoxFor(r => r.Name, new { @class = "searchbar", required = "required", maxlength = "30" })</p>
+        <p>Theme </p>
+        <p>@Html.TextBoxFor(r => r.Description, new { @class = "searchbar", required = "required", maxlength = "30" })</p>
+        <p>Text</p>
+        <p>@Html.TextAreaFor(r => r.Text, 20, 40, new { @class = "searchbar", required = "required", maxlength = "2000" })</p>
+        <p><input type="submit" class="bubbly-button" value="Create" /></p>
+    </form>

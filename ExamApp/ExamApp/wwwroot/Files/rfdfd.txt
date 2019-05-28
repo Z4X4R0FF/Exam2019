@@ -1,0 +1,84 @@
+Static routes:
+	- [R1] ip route-static <net ip> 0 <interface ip  address>
+	DEFAULT: ip route-static 0.0.0.0 0 192.168.0.2
+
+	- [R1] ipv6 route-static <net ipv6> <interface ipv6 address>
+	DEFAULT: ipv6 route-static ::/0 3000::2
+
+Loopback:
+	- [R1] interface LoopBack <N> (Перейти в лупбэк N)
+	- [R1-LoopBack0]ip address ... (Назначение ip адреса внутри loopback)
+
+RIP:
+	- [Huawei]rip N (Запуск процесса RIP маршрутизации)
+	- [Huawei-rip-1]version 2 (Выбор версии протокола)
+	- [Huawei-rip-1]summary (Включить автосуммирование маршрутов)
+	- [Huawei-rip-1]summary always (Включить безусловное автосуммирование маршрутов)
+	- [Huawei-rip-1]undo summary (Выключить автосуммирование маршрутов)
+	- [Huawei-rip-1]network <IP> (Анонсировать сеть)
+	- [Huawei-GigabitEthernet0/0/0]undo rip split-horizon  (Отменить расщепление горизонта на исходящем интерфейсе)
+	- [Huawei-GigabitEthernet0/0/0]undo rip input (Отключить приём RIP-объявлений через интерфейс Ge0/0/0)
+	- [Huawei-GigabitEthernet0/0/0]undo rip output (Отключить отправку RIP-объявлений через интерфейс Ge0/0/0)
+
+	- [Huawei-GigabitEthernet0/0/0]rip authentication-mode simple plain Password (Включить простую аутентификацию маршрутизаторов на каждом интерфейсе раздельно)
+	- [Huawei-GigabitEthernet0/0/0]rip authentication-mode md5 usual plain Password (Включить защищенную аутентификацию маршрутизаторов на каждом интерфейсе раздельно)
+	- [Huawei-rip-1]import-route static cost 2 (Импорт в процесс RIP статических маршрутов)
+	- [Huawei-rip-1]import-route ospf 1 cost 2 (Импорт в процесс RIP маршрутов из OSPF)
+
+
+RIPng:
+	- [Huawei]ripng N (Запуск процесса RIPng маршрутизации)
+	- [Huawei-GigabitEthernet0/0/0]ripng 1 enable (Включить RIPng на этом интерфейсе)
+	- [Huawei-LoopBack1]ripng 1 enable (Включить RIPng на loopback интерфейсе)
+
+	- [Huawei-ripng-1]import-route direct cost 2 (Импорт в процесс RIPng прямых маршрутов)
+	- [Huawei-ripng-1]import-route static cost 2 (Импорт в процесс RIPng статических маршрутов)
+	- [Huawei-ripng-1]import-route ospfv3 1 cost 2(Импорт в процесс RIPng маршрутов из OSPF)
+
+
+OSPF:
+	- [Huawei]ospf 1 router-id 1.1.1.1 (Включить ospf процесс 1 с id роутера 1.1.1.1)
+	- [Huawei-ospf-1]area 0 (Добавить зону)
+	- [Huawei-ospf-1-area-0.0.0.0]network 172.16.0.0 0.0.0.255 (Добавить сети в зону - используется обратная маска)
+	- [Huawei-ospf-1-area-0.0.0.2]stub (Сделать зону тупиковой)
+	- [Huawei-ospf-1-area-0.0.0.2]stub no-summary (Сделать зону полностью тупиковой)
+
+	Настроить виртуальный линк между AR1 и AR2
+	[Huawei-ospf-1-area-0.0.0.2]vlink-peer <AR2 id> (на AR1)
+	[Huawei-ospf-1-area-0.0.0.2]vlink-peer <AR1 id> (на AR2)
+
+	- [Huawei-ospf-1-area-0.0.0.3]nssa (Объявить зону как NSSA)
+	- [Huawei-ospf-1-area-0.0.0.3]nssa no-summary (Объявить зону как Totally NSSA)
+	- [Huawei-ospf-1]import-route direct type 1 (Импортировать сети в OSPF как внешние типа 1)
+	- [Huawei-ospf-1]import-route static type 2 (Добавить в OSPF статический маршрут как внешний типа 2)
+
+	- если будет получено сообщение о необходимости перезапустить OSPF процесс - выполнить перезапуск.
+	<Huawei>reset ospf 1 process
+
+	- [Huawei-GigabitEthernet0/0/0]ospf dr-priority 100 (Задать dr-приоритет маршрутизатора)
+
+OSPFv3
+	- [Huawei]ospfv3 1 (Cоздать OSPFv3 процесс)
+	- [Huawei-ospfv3-1]router-id 2.2.2.2 (Настроить Router-ID)
+
+	Указать интерфейсы для работы с OSPFv3:
+	[Huawei-GigabitEthernet0/0/0]ospfv3 1 area 0
+	[Huawei-LoopBack1]ospfv3 1 area 0
+	[Huawei-LoopBack2]ospfv3 1 area 0
+	[Huawei-LoopBack3]ospfv3 1 area 0
+
+
+HELP:
+ 	- [Huawei]display ip(v6)routing table (Просмотр таблиц маршрутизации)
+	- [Huawei]display ip routing table | include RIP
+	- display rip(ng) 1 database (Выполнить просмотр информации процесса RIP(ng))
+	- display ospf brief (Выполнить просмотр состояния OSPF)
+	- display ospf peer (Соседи)
+	- display ospf interface (Интерфейс)
+	- display ospf routing (Таблица маршрутизации OSPF)
+	- display ipv6 routing-table protocol ospfv3 (Выполнить просмотр информации процесса OSPF)
+	- display ospfv3 lsdb intra-prefix (Выполнить просмотр lsdb)
+	- display ospfv3 lsdb inter-prefix (Выполнить просмотр lsdb)
+
+VRRP:
+	- vrrp vrid 1 vir 172.31.0.1
