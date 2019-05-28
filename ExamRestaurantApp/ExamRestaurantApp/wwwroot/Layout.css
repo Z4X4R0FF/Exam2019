@@ -1,0 +1,162 @@
+﻿body {
+    background-color: white;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: auto;
+    overflow: auto;
+    font-size: calc(24px + (26 - 25) * (100vw - 320px) / (1440 - 320));
+}
+
+
+.bubbly-button {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: calc(23px + (24 - 23) * (100vw - 1080px) / (1440 - 1080));
+    display: inline-block;
+    padding: 1em 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+    box-shadow: 0 2px 25px rgba(0,0,0, 0.5);
+}
+
+    .bubbly-button:focus {
+        outline: 0;
+    }
+
+    .bubbly-button:before, .bubbly-button:after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 140%;
+        height: 100%;
+        left: -20%;
+        z-index: -1000;
+        transition: all ease-in-out 0.5s;
+        background-repeat: no-repeat;
+    }
+
+    .bubbly-button:before {
+        display: none;
+        top: -75%;
+        background-image: radial-gradient(circle,#000000 20%, transparent 20%), radial-gradient(circle, transparent 20%,#000000 20%, transparent 30%), radial-gradient(circle, #000000 20%, transparent 20%), radial-gradient(circle, #00cccc 20%, transparent 20%), radial-gradient(circle, transparent 10%, #000000 15%, transparent 20%), radial-gradient(circle,#000000 20%, transparent 20%), radial-gradient(circle,#000000 20%, transparent 20%), radial-gradient(circle, #000000 20%, transparent 20%), radial-gradient(circle, #000000 20%, transparent 20%);
+        background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+    }
+
+    .bubbly-button:after {
+        display: none;
+        bottom: -75%;
+        background-image: radial-gradient(circle,#000000 20%, transparent 20%), radial-gradient(circle,#000000 20%, transparent 20%), radial-gradient(circle, transparent 10%, #000000 15%, transparent 20%), radial-gradient(circle, #000000 20%, transparent 20%), radial-gradient(circle,#000000 20%, transparent 20%), radial-gradient(circle, #000000 20%, transparent 20%), radial-gradient(circle, #000000 20%, transparent 20%);
+        background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+    }
+
+    .bubbly-button:active {
+        transform: scale(0.9);
+        background-color: white;
+        color: black;
+        box-shadow: 0 2px 25px rgba(0,0,0, 0.4);
+    }
+
+
+.centerWindow {
+    background-color: rgba(255,255,255,0.7);
+    position: relative;
+    padding: 20px;
+    width: 90%;
+    border: 5px black solid;
+    border-radius: 25px;
+    margin: auto;
+    text-align: center;
+}
+
+.innerwindow {
+    position: absolute;
+    horiz-align: center;
+    width: 90%;
+}
+
+ul {
+    display: inline-block;
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    flex-basis: auto;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.searchbar {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: calc(23px + (24 - 23) * (100vw - 1080px) / (1440 - 1080));
+    display: inline-block;
+    padding: 1em 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    background-color: white;
+    border: #black;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+    box-shadow: 0 2px 25px rgba(0,0,0, 0.5);
+}
+
+textarea {
+    overflow: auto;
+    resize: none;
+}
+
+input:required:invalid {
+    border: 3px solid red !important;
+    outline: none;
+}
+
+.commentWindow {
+    position: center;
+    horiz-align: left;
+    margin: 4px;
+    text-align: left;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.comment {
+    position: center;
+    horiz-align: left;
+    margin: auto;
+    text-align: left;
+    padding: 3px;
+    border: 1px solid black;
+}
+
+.cope_text {
+    overflow: hidden;
+    line-height: 20px;
+}
+
+    .cope_text p {
+        margin: 0 0 0 0;
+    }
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 20;
+    -webkit-box-orient: vertical;
+}
+
+nav {
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}

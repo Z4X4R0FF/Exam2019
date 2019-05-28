@@ -1,0 +1,17 @@
+﻿@model  List<ExamRestaurantApp.Models.Order>
+@{
+    Layout = "_Layout";
+}
+@section nav
+{}
+    <div class="centerWindow">
+        <p>Let's make a delivery order!</p>
+        @foreach(var order in Model)
+        {
+            <p>@order.Food.Name</p>
+            <p>@order.Food.Cost</p>
+            <p><button class="bubbly-button" onclick="location.href = '@Url.Action("RemoveFromBin", "Home", new {id=order.Id })'">Delete</button></p>
+        }
+        <p><button class="bubbly-button" onclick="location.href = '@Url.Action("MakeOrder", "Home")'">Make Order</button></p>
+    </div>
+

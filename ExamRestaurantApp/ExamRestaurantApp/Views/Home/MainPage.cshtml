@@ -1,0 +1,31 @@
+﻿@model ExamRestaurantApp.Models.User
+@{
+    Layout = "_Layout";
+}
+@section nav
+{}
+<div class="centerWindow">
+    @if (Model.UserLogin == "Administrator")
+    {
+        <h2>Add Restaurant</h2>
+        @using (Html.BeginForm("AddRestaurant", "Home", FormMethod.Post))
+        {
+            <p>Name </p>
+            <p><input type="text"class="searchbar" name="name" placeholder="Name" /></p>
+            <p><input type="submit" class="bubbly-button" value="Add" /></p>
+        }
+        <h2>Add Food to Restaurant</h2>
+        @using (Html.BeginForm("AddFoodToRestaurant", "Home", FormMethod.Post))
+        {
+            <p>Restaurant Id</p>
+            <p><input type="number"class="searchbar" name="restaurantId" placeholder="Id" /></p>
+            <p>Name</p>
+            <p><input type="text"class="searchbar" name="name" placeholder="Name" /></p>
+            <p>Description</p>
+            <p><input type="text"class="searchbar" name="description" placeholder="description" /></p>
+            <p>Cost</p>
+            <p><input type="number"class="searchbar" name="cost" placeholder="Cost" /></p>
+            <p><input type="submit" class="bubbly-button" value="Add" /></p>
+        }
+    }
+</div>

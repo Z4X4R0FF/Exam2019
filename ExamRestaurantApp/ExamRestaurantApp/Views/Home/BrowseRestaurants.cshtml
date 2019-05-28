@@ -1,0 +1,21 @@
+﻿@model List<ExamRestaurantApp.Models.Restaurant>
+@{
+    Layout = "_Layout";
+}
+@section nav
+{}
+    <div class="centerWindow">
+        @if (Model.Count != 0)
+        {
+            foreach (var rest in Model)
+            {
+                <p>
+                    <button type="button" class="bubbly-button" onclick="location.href = '@Url.Action("ViewRestaurant", "Home", new {id = rest.Id})'">@rest.Name</button>
+                </p>
+            }
+        }
+        else
+        {
+            <p>Nothing was found.</p>
+        }
+    </div>

@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="centerWindow">
+    <h1 class="display-4">Welcome</h1>
+    <p>Login to access Delivery.</p>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        <p><input type="text" class="searchbar" name="login" placeholder="login" required /></p>
+        <p><input type="password" class="searchbar" name="password" placeholder="password" required /></p>
+        <p><input type="submit"class="bubbly-button" value="Login"></p>
+    }
+    <p>Register</p>
+    <p><input type="button" class="bubbly-button" value="Registration" onclick='location.href = "Home/RegisterPage"'></p>
+    <br />
+
+</div>

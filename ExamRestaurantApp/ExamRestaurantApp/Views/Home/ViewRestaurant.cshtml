@@ -1,0 +1,24 @@
+﻿@model ExamRestaurantApp.Models.Restaurant
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+@section nav
+{}
+<div class="centerWindow">
+    <p>@Model.Name</p>
+    @if (Model.Foods != null)
+    {
+        @foreach (var food in Model.Foods)
+        {
+            <p>@food.Name</p>
+            <p>@food.Description</p>
+            <p>@food.Cost</p>
+            <p><button class="bubbly-button" onclick="location.href = '@Url.Action("AddToBin", "Home", new { id = food.Id })'">Add To Bin</button></p>
+        }
+    }
+    else
+    {
+        <p>No food yet.</p>
+    }
+</div>
