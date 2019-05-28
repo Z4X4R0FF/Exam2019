@@ -16,7 +16,9 @@
         <p>@Html.TextBoxFor(r => r.Description,new {required = "required" })</p>
         <p>Text</p>
         <p>@Html.TextAreaFor(r => r.Text, 20, 40,new {required = "required" })</p>
+        <p>Need Password?(optional)</p>
         <p>@Html.CheckBoxFor(r=>r.hasPass)</p>
+        <p>Password</p>
         <p>@Html.TextBoxFor(r=>r.password)</p>
         <p><input type="submit" class="bubbly-button" value="Create" /></p>
     </form>
