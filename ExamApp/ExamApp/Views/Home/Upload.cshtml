@@ -11,10 +11,12 @@
     <form asp-action="UploadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
         <input type="file" name="uploadedFile" /><br>
         <p>Name </p>
-        <p>@Html.TextBoxFor(r => r.Name, new { @class = "searchbar", required = "required", maxlength = "30" })</p>
+        <p>@Html.TextBoxFor(r => r.Name,new {required = "required" })</p>
         <p>Theme </p>
-        <p>@Html.TextBoxFor(r => r.Description, new { @class = "searchbar", required = "required", maxlength = "30" })</p>
+        <p>@Html.TextBoxFor(r => r.Description,new {required = "required" })</p>
         <p>Text</p>
-        <p>@Html.TextAreaFor(r => r.Text, 20, 40, new { @class = "searchbar", required = "required", maxlength = "2000" })</p>
+        <p>@Html.TextAreaFor(r => r.Text, 20, 40,new {required = "required" })</p>
+        <p>@Html.CheckBoxFor(r=>r.hasPass)</p>
+        <p>@Html.TextBoxFor(r=>r.password)</p>
         <p><input type="submit" class="bubbly-button" value="Create" /></p>
     </form>

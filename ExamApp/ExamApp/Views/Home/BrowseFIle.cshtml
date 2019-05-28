@@ -11,10 +11,19 @@
 <p>@Model.Text</p><br />
 <p>Total downloads</p>
 <p>@Model.AmountOfDownloads</p>
-<p><button type="button" onclick="location.href = '@Url.Action("Download", "Home", new {id=Model.Id}, null)'">Download</button></p>
 
+
+@if (Model.hasPass)
+{
+    @using (Html.BeginForm("Download", "Home", FormMethod.Get))
+    {
+        <p>Password</p>
+        <p><input type="hidden" name="id" value="@Model.Id" /></p>
+        <p><input type="text" name="password" /></p>
+        <p><input type="submit" class="bubbly-button" value="Download" /></p>
+    }
 }
 else
 {
-<p>Nothing was found.</p>
+    <p><button type="button" onclick="location.href = '@Url.Action("Download", "Home", new {id=Model.Id}, null)'">Download</button></p>
 }

@@ -12,6 +12,8 @@ namespace ExamApp.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public string ContentType { get; set; }
+        public bool hasPass { get; set; }
+        public string password { get; set; }
         public int AmountOfDownloads { get; set; }
         public string Description { get; set; }
         public string Text { get; set; }
